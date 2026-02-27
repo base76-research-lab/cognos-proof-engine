@@ -20,10 +20,21 @@ app = FastAPI(title="Operational Cognos Gateway", version="0.1.0")
 
 UPSTREAM_BASE_URL = os.getenv("COGNOS_UPSTREAM_BASE_URL", "https://api.openai.com/v1")
 UPSTREAM_API_KEY = os.getenv("COGNOS_UPSTREAM_API_KEY", "")
+INSTANCE_OPENAI_BASE_URL = os.getenv("COGNOS_INSTANCE_OPENAI_BASE_URL", "https://api.openai.com/v1")
+INSTANCE_OPENAI_API_KEY = os.getenv("COGNOS_INSTANCE_OPENAI_API_KEY", "")
+INSTANCE_GOOGLE_BASE_URL = os.getenv("COGNOS_INSTANCE_GOOGLE_BASE_URL", "")
+INSTANCE_GOOGLE_API_KEY = os.getenv("COGNOS_INSTANCE_GOOGLE_API_KEY", "")
+INSTANCE_CLAUDE_BASE_URL = os.getenv("COGNOS_INSTANCE_CLAUDE_BASE_URL", "")
+INSTANCE_CLAUDE_API_KEY = os.getenv("COGNOS_INSTANCE_CLAUDE_API_KEY", "")
+INSTANCE_MISTRAL_BASE_URL = os.getenv("COGNOS_INSTANCE_MISTRAL_BASE_URL", "")
+INSTANCE_MISTRAL_API_KEY = os.getenv("COGNOS_INSTANCE_MISTRAL_API_KEY", "")
+INSTANCE_OLLAMA_BASE_URL = os.getenv("COGNOS_INSTANCE_OLLAMA_BASE_URL", "")
+INSTANCE_OLLAMA_API_KEY = os.getenv("COGNOS_INSTANCE_OLLAMA_API_KEY", "")
 DEFAULT_POLICY = os.getenv("COGNOS_DEFAULT_POLICY", "default_v1")
 REQUEST_TIMEOUT_SECONDS = float(os.getenv("COGNOS_REQUEST_TIMEOUT_SECONDS", "120"))
 MOCK_UPSTREAM = os.getenv("COGNOS_MOCK_UPSTREAM", "false").lower() in {"1", "true", "yes"}
 GATEWAY_API_KEY = os.getenv("COGNOS_GATEWAY_API_KEY", "")
+ALLOW_NO_UPSTREAM_AUTH = os.getenv("COGNOS_ALLOW_NO_UPSTREAM_AUTH", "false").lower() in {"1", "true", "yes"}
 
 
 @app.on_event("startup")
@@ -79,7 +90,8 @@ async def chat_completions(request: Request) -> Response:
     decision, risk = resolve_decision(cognos_cfg.mode, cognos_cfg.target_risk)
     active_policy = cognos_cfg.policy_id or DEFAULT_POLICY
 
-    upstream_url = f"{UPSTREAM_BASE_URL.rstrip('/')}/chat/completions"
+    upstream_target = _resolve_upstream_target(str(payload.get("model", model)))
+    upstream_url = f"{upstream_target['base_url'].rstrip('/')}/chat/completions"
     is_stream = bool(request_model.stream)
     response_headers = _epistemic_headers(
         trace_id=trace_id,
@@ -90,6 +102,7 @@ async def chat_completions(request: Request) -> Response:
 
     request_fingerprint = _payload_fingerprint(payload, model_id=model)
     upstream_payload = {k: v for k, v in payload.items() if k != "cognos"}
+    upstream_payload["model"] = upstream_target["model"]
 
     if MOCK_UPSTREAM:
         if is_stream:
@@ -137,7 +150,11 @@ async def chat_completions(request: Request) -> Response:
         )
         return JSONResponse(status_code=200, content=upstream_json, headers=response_headers)
 
-    outbound_headers = _build_upstream_headers(request.headers)
+    outbound_headers = _build_upstream_headers(
+        request.headers,
+        upstream_api_key=upstream_target["api_key"],
+        upstream_base_url=upstream_target["base_url"],
+    )
 
     try:
         async with httpx.AsyncClient(timeout=REQUEST_TIMEOUT_SECONDS) as client:
@@ -223,22 +240,106 @@ async def chat_completions(request: Request) -> Response:
     return JSONResponse(status_code=200, content=upstream_json, headers=response_headers)
 
 
-def _build_upstream_headers(incoming_headers: Any) -> dict[str, str]:
+def _build_upstream_headers(incoming_headers: Any, upstream_api_key: str, upstream_base_url: str) -> dict[str, str]:
     headers = {"content-type": "application/json"}
 
     incoming_auth = incoming_headers.get("authorization")
     incoming_upstream_auth = incoming_headers.get("x-cognos-upstream-authorization")
 
-    if UPSTREAM_API_KEY:
-        headers["authorization"] = f"Bearer {UPSTREAM_API_KEY}"
+    if upstream_api_key:
+        headers["authorization"] = f"Bearer {upstream_api_key}"
     elif incoming_upstream_auth:
         headers["authorization"] = incoming_upstream_auth
     elif incoming_auth and not GATEWAY_API_KEY:
         headers["authorization"] = incoming_auth
+    elif ALLOW_NO_UPSTREAM_AUTH and _is_local_upstream(upstream_base_url):
+        pass
     else:
         raise HTTPException(status_code=500, detail="Missing upstream authorization")
 
     return headers
+
+
+def _normalize_model_for_upstream(model: str) -> str:
+    normalized = (model or "").strip()
+    if ":" not in normalized:
+        return normalized
+
+    prefix, remainder = normalized.split(":", 1)
+    base = UPSTREAM_BASE_URL.lower()
+
+    if "api.openai.com" in base and prefix.lower() == "openai":
+        return remainder
+
+    return normalized
+
+
+def _resolve_upstream_target(model: str) -> dict[str, str]:
+    normalized_model = (model or "").strip()
+    base_url = UPSTREAM_BASE_URL
+    api_key = UPSTREAM_API_KEY
+
+    if ":" in normalized_model:
+        prefix, remainder = normalized_model.split(":", 1)
+        prefix = prefix.lower().strip()
+        remainder = remainder.strip()
+
+        if prefix == "openai":
+            base_url = INSTANCE_OPENAI_BASE_URL or UPSTREAM_BASE_URL
+            api_key = INSTANCE_OPENAI_API_KEY or UPSTREAM_API_KEY
+            normalized_model = _normalize_prefixed_model(prefix, remainder, base_url)
+        elif prefix == "google":
+            base_url = INSTANCE_GOOGLE_BASE_URL or UPSTREAM_BASE_URL
+            api_key = INSTANCE_GOOGLE_API_KEY or UPSTREAM_API_KEY
+            normalized_model = _normalize_prefixed_model(prefix, remainder, base_url)
+        elif prefix in {"claude", "anthropic"}:
+            base_url = INSTANCE_CLAUDE_BASE_URL or UPSTREAM_BASE_URL
+            api_key = INSTANCE_CLAUDE_API_KEY or UPSTREAM_API_KEY
+            normalized_model = _normalize_prefixed_model(prefix, remainder, base_url)
+        elif prefix == "mistral":
+            base_url = INSTANCE_MISTRAL_BASE_URL or UPSTREAM_BASE_URL
+            api_key = INSTANCE_MISTRAL_API_KEY or UPSTREAM_API_KEY
+            normalized_model = _normalize_prefixed_model(prefix, remainder, base_url)
+        elif prefix == "ollama":
+            base_url = INSTANCE_OLLAMA_BASE_URL or UPSTREAM_BASE_URL
+            api_key = INSTANCE_OLLAMA_API_KEY or UPSTREAM_API_KEY
+            normalized_model = _normalize_prefixed_model(prefix, remainder, base_url)
+        else:
+            normalized_model = _normalize_model_for_upstream(normalized_model)
+    else:
+        normalized_model = _normalize_model_for_upstream(normalized_model)
+
+    return {
+        "base_url": base_url,
+        "api_key": api_key,
+        "model": normalized_model,
+    }
+
+
+def _normalize_prefixed_model(prefix: str, remainder: str, base_url: str) -> str:
+    lowered_base = (base_url or "").lower()
+
+    if "api.openai.com" in lowered_base and prefix == "openai":
+        return remainder
+
+    if "openrouter.ai" in lowered_base:
+        if prefix == "openai":
+            return f"openai/{remainder}"
+        if prefix == "google":
+            return f"google/{remainder}"
+        if prefix in {"claude", "anthropic"}:
+            return f"anthropic/{remainder}"
+        if prefix == "mistral":
+            return f"mistralai/{remainder}"
+        if prefix == "ollama":
+            return remainder
+
+    return remainder
+
+
+def _is_local_upstream(base_url: str) -> bool:
+    lowered = base_url.lower()
+    return "127.0.0.1" in lowered or "localhost" in lowered
 
 
 def _require_gateway_auth(incoming_headers: Any) -> None:

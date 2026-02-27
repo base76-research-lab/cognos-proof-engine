@@ -17,6 +17,7 @@ Supports providers:
 [![OpenAI](https://img.shields.io/badge/OpenAI-Supported-412991?logo=openai&logoColor=white)](https://openai.com/)
 [![Claude](https://img.shields.io/badge/Claude-Supported-D97706?logo=anthropic&logoColor=white)](https://www.anthropic.com/claude)
 [![Mistral](https://img.shields.io/badge/Mistral-Supported-111827)](https://mistral.ai/)
+[![Ollama](https://img.shields.io/badge/Ollama-Supported-111827)](https://ollama.com/)
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 
@@ -81,6 +82,8 @@ Switch model prefix as needed:
 - `openai:gpt-4o-mini`
 - `google:gemini-2.0-flash-001`
 - `claude:claude-sonnet-4`
+- `mistral:mistral-small-latest`
+- `ollama:llama3.2`
 
 ## API Contract (Source of Truth)
 
@@ -119,10 +122,14 @@ Only the operational engine components built and run by agents:
       - `export COGNOS_INSTANCE_OPENAI_BASE_URL="https://api.openai.com/v1"`
       - `export COGNOS_INSTANCE_GOOGLE_BASE_URL="https://openrouter.ai/api/v1"`
       - `export COGNOS_INSTANCE_CLAUDE_BASE_URL="https://openrouter.ai/api/v1"`
+      - `export COGNOS_INSTANCE_MISTRAL_BASE_URL="https://openrouter.ai/api/v1"`
+      - `export COGNOS_INSTANCE_OLLAMA_BASE_URL="https://api.ollama.com/v1"`
       - add keys later with:
          - `COGNOS_INSTANCE_OPENAI_API_KEY`
          - `COGNOS_INSTANCE_GOOGLE_API_KEY`
          - `COGNOS_INSTANCE_CLAUDE_API_KEY`
+         - `COGNOS_INSTANCE_MISTRAL_API_KEY`
+         - `COGNOS_INSTANCE_OLLAMA_API_KEY`
 3. Start server: `python3 -m uvicorn --app-dir src main:app --reload --port 8788`
 4. Health check: `GET http://127.0.0.1:8788/healthz`
 
@@ -149,6 +156,8 @@ Gateway can route by model prefix without changing endpoint:
 - `openai:gpt-4o-mini`
 - `google:gemini-2.0-flash-001`
 - `claude:claude-sonnet-4`
+- `mistral:mistral-small-latest`
+- `ollama:llama3.2`
 
 Behavior:
 

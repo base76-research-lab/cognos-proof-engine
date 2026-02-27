@@ -149,6 +149,27 @@ Use this when OpenAI quota is exhausted and you want local inference.
    - `export COGNOS_MOCK_UPSTREAM=false`
 - Use an Ollama model id in requests, e.g. `llama3.2:latest`
 
+### Ollama Cloud as Provider Instance
+
+Use this when you want Ollama-hosted cloud models via provider prefix routing.
+
+```bash
+export COGNOS_INSTANCE_OLLAMA_BASE_URL="https://api.ollama.com/v1"
+export COGNOS_INSTANCE_OLLAMA_API_KEY="YOUR_OLLAMA_CLOUD_KEY"
+```
+
+Then call with an Ollama-prefixed model:
+
+```bash
+curl -sS http://127.0.0.1:8788/v1/chat/completions \
+   -H 'Content-Type: application/json' \
+   -d '{
+      "model": "ollama:llama3.2",
+      "messages": [{"role":"user","content":"Explain trust verification in 3 bullets."}],
+      "cognos": {"mode":"monitor"}
+   }'
+```
+
 ### Prefix-based Provider Routing
 
 Gateway can route by model prefix without changing endpoint:

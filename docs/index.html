@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CognOS — Trust Verification for Every AI Decision</title>
+    <meta name="description" content="CognOS: The missing trust layer for the AI economy. Verify every AI decision. Prove correctness. Pass compliance.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 4px solid #4f46e5;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            font-size: 1.25em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #4f46e5;
+            border-color: #4f46e5;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .value-props {
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            margin: 60px 0;
+            border-left: 6px solid #4f46e5;
+        }
+
+        .value-props h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .value-props ul {
+            list-style: none;
+        }
+
+        .value-props li {
+            padding: 12px 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .value-props li:last-child {
+            border-bottom: none;
+        }
+
+        .value-props li strong {
+            color: #4f46e5;
+        }
+
+        .quickstart {
+            background: #f8f8f8;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 60px 0;
+        }
+
+        .quickstart h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            color: #4f46e5;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        .code-block code {
+            color: #4f46e5;
+        }
+
+        .providers {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .provider-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 4px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 4px solid #4f46e5;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .value-props {
+                padding: 30px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔐 CognOS</h1>
+        <p>Trust Verification for Every AI Decision</p>
+        <div class="hero-cta">
+            <a href="https://github.com/base76-research-lab/operational-cognos" class="btn btn-primary">⭐ View on GitHub</a>
+            <a href="#quickstart" class="btn btn-secondary">Get Started</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="value-props">
+            <h2>The Missing Trust Layer for the AI Economy</h2>
+            <ul>
+                <li><strong>✅ Verify every decision</strong> — Get cryptographic proof of what an AI output is and why it's safe.</li>
+                <li><strong>📋 Audit-ready traces</strong> — Immutable, timestamped records for every request. Perfect for compliance reporting.</li>
+                <li><strong>🎯 Policy enforcement</strong> — Monitor high-risk outputs or block them outright based on your rules.</li>
+                <li><strong>🔌 Drop-in gateway</strong> — OpenAI-compatible API. Works with GPT-4, Claude, Gemini, Mistral, Ollama.</li>
+                <li><strong>📊 Attestation scores</strong> — Risk signals, confidence metrics, and uncertainty quantification in every response.</li>
+            </ul>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Zero Config</h3>
+                <p>Runs locally with mocked upstream or connects to any LLM provider via environment variables.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔐</div>
+                <h3>Cryptographic Proof</h3>
+                <p>Every decision includes a signed trace ID for audit trails and compliance evidence.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Multi-Provider</h3>
+                <p>Route to OpenAI, Claude, Google, Mistral, or Ollama with a single prefix.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Risk Signals</h3>
+                <p>Epistemic uncertainty, aleatoric uncertainty, and out-of-distribution detection.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Policy Enforcement</h3>
+                <p>Monitor mode (log only) or enforce mode (block/refine/escalate).</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🐳</div>
+                <h3>Docker Ready</h3>
+                <p><code>docker-compose up</code> and start verifying AI decisions in 30 seconds.</p>
+            </div>
+        </div>
+
+        <div class="quickstart" id="quickstart">
+            <h2>Quick Start (3 Steps)</h2>
+
+            <h3>1. Clone</h3>
+            <div class="code-block"><code>git clone https://github.com/base76-research-lab/operational-cognos.git
+cd operational-cognos</code></div>
+
+            <h3>2. Install & Run</h3>
+            <div class="code-block"><code>pip install -r requirements.txt
+export COGNOS_MOCK_UPSTREAM=true
+python3 -m uvicorn --app-dir src main:app --port 8788</code></div>
+
+            <h3>3. Test</h3>
+            <div class="code-block"><code>curl -X POST http://127.0.0.1:8788/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [{"role":"user","content":"Is this safe?"}],
+    "cognos": {"mode":"monitor"}
+  }'</code></div>
+
+            <h3>Or use Docker</h3>
+            <div class="code-block"><code>docker-compose up
+# In another terminal:
+curl -X POST http://127.0.0.1:8788/v1/chat/completions ...</code></div>
+
+            <h3>Or install Python SDK</h3>
+            <div class="code-block"><code>pip install cognos-sdk
+
+from cognos import CognosClient
+
+client = CognosClient()
+response = client.chat(
+    model="gpt-4o-mini",
+    messages=[{"role":"user","content":"What's 2+2?"}],
+    mode="monitor"
+)
+print(f"Decision: {response.cognos.decision}")</code></div>
+        </div>
+
+        <div style="background: white; padding: 40px; border-radius: 8px; margin: 60px 0; border: 2px solid #4f46e5;">
+            <h2 style="margin-bottom: 20px;">Supported Providers</h2>
+            <div class="providers">
+                <div class="provider-badge">🟦 OpenAI</div>
+                <div class="provider-badge">🔴 Claude (via OpenRouter)</div>
+                <div class="provider-badge">🔵 Google Gemini</div>
+                <div class="provider-badge">🟣 Mistral</div>
+                <div class="provider-badge">🦙 Ollama (local)</div>
+            </div>
+            <p style="color: #666; margin-top: 20px; font-size: 0.95em;">Use model prefixes: <code>openai:gpt-4o-mini</code>, <code>claude:claude-sonnet-4</code>, <code>google:gemini-2.0-flash</code>, <code>mistral:mistral-small</code>, <code>ollama:llama3.2</code></p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Major LLM Providers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Trust Verification Modes</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Audit-Ready Traces</div>
+            </div>
+        </div>
+
+        <div style="background: #f8f8f8; padding: 40px; border-radius: 8px; margin: 60px 0; text-align: center;">
+            <h2 style="margin-bottom: 20px;">Use Cases</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div>
+                    <h3 style="color: #4f46e5; margin-bottom: 10px;">📋 Compliance</h3>
+                    <p>EU AI Act, GDPR, SOC2. Generate audit reports instantly.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4f46e5; margin-bottom: 10px;">🏥 Healthcare</h3>
+                    <p>Verify AI diagnoses and recommendations with confidence scores.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4f46e5; margin-bottom: 10px;">⚖️ Legal</h3>
+                    <p>Cryptographic proof of decision reasoning for discovery.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4f46e5; margin-bottom: 10px;">🏦 Finance</h3>
+                    <p>Risk-score every credit decision. Block high-uncertainty outputs.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4f46e5; margin-bottom: 10px;">🛡️ Content Mod</h3>
+                    <p>Detect risky content + automatically escalate to humans.</p>
+                </div>
+                <div>
+                    <h3 style="color: #4f46e5; margin-bottom: 10px;">🤖 AI Safety</h3>
+                    <p>Built-in adversarial detection and uncertainty quantification.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 40px; border-radius: 8px; margin: 60px 0; border-left: 6px solid #4f46e5;">
+            <h2 style="margin-bottom: 20px;">Why CognOS?</h2>
+            <ul style="list-style: none;">
+                <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                    <strong>📦 Drop-in replacement</strong> — Swap your LLM provider URL. No code changes.
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                    <strong>🔬 Based on peer-reviewed research</strong> — Epistemic uncertainty quantification + divergence detection.
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                    <strong>⚡ Sub-100ms overhead</strong> — Trust verification doesn't slow you down.
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                    <strong>🔓 Open source</strong> — MIT license. No vendor lock-in.
+                </li>
+                <li style="padding: 10px 0;">
+                    <strong>🛠️ Agency-friendly</strong> — Works with LangChain, AutoGen, CrewAI, n8n.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>CognOS — Trust Infrastructure for AI</strong></p>
+        <p>Built by <a href="https://base76.se" style="color: #4f46e5; text-decoration: none;">Base76 Research Lab</a></p>
+        <div class="social-links">
+            <a href="https://github.com/base76-research-lab/operational-cognos">GitHub</a>
+            <a href="https://base76.se">Website</a>
+            <a href="https://discord.gg/base76">Discord</a>
+        </div>
+        <p style="margin-top: 20px; opacity: 0.8; font-size: 0.9em;">Made with 🧠 for the future of trustworthy AI</p>
+    </footer>
+</body>
+</html>

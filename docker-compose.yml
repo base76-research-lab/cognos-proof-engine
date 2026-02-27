@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  cognos:
+    build: .
+    container_name: cognos-gateway
+    ports:
+      - "8788:8788"
+    environment:
+      COGNOS_MOCK_UPSTREAM: "true"
+      COGNOS_TRACE_DB: /data/traces.sqlite3
+    volumes:
+      - cognos-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8788/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  cognos-data:
+    driver: local

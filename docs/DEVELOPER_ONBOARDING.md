@@ -47,6 +47,16 @@ cognos chat "What are the key GDPR principles?" --mode monitor
 # cognos chat "Summarize EU AI Act" --mode monitor --model ollama:llama3.2
 ```
 
+Ollama Cloud provider instance (optional):
+
+```bash
+export COGNOS_INSTANCE_OLLAMA_BASE_URL="https://api.ollama.com/v1"
+export COGNOS_INSTANCE_OLLAMA_API_KEY="YOUR_OLLAMA_CLOUD_KEY"
+
+# Example
+cognos chat "Summarize EU AI Act" --mode monitor --model ollama:llama3.2
+```
+
 If `pip install -e .` fails with `externally-managed-environment` (PEP 668), use one of:
 
 ```bash

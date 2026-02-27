@@ -9,6 +9,12 @@ venv/
 # Local runtime data
 /data/
 *.sqlite3
+.playwright-profile/
+
+# Generated social content artifacts
+ops/content/outbox/post_batch_*.json
+ops/content/agent_posts/agent_post_*.json
+ops/content/manual_posts/manual_post_*.md
 
 # OS/editor
 .DS_Store

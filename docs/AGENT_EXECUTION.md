@@ -65,6 +65,14 @@ Från projektroten:
   - `python3 src/gh_autopilot.py --repo operational-cognos --owner base76-research-lab --visibility private`
 - Full guide: `docs/GITHUB_AUTOPILOT.md`
 
+## Social growth-automation (n8n)
+
+- Generera återkommande inlägg från agentdata:
+  - `python3 src/social_content_pipeline.py --stdout`
+- Publiceringsworkflow:
+  - `ops/n8n/workflows/cognos-social-autopilot.json`
+- Full guide: `docs/N8N_SOCIAL_AUTOMATION.md`
+
 ## Första sprintmål
 
 - Stabil gateway

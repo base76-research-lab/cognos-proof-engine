@@ -1,5 +1,7 @@
 # GitHub Autopilot — Operational Cognos
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Syfte
 
 Låta agenter skapa repo + pusha kod automatiskt utan manuell GitHub-hantering.

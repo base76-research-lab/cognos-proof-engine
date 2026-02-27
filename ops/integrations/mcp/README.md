@@ -1,5 +1,7 @@
 # CognOS MCP-Compatible Tool Bridge
 
+![CognOS Brand](../../../docs/assets/logo/cognos-logo-horizontal.svg)
+
 This service exposes CognOS verification as a tool-style HTTP endpoint.
 
 Run:

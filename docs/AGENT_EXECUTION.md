@@ -1,5 +1,7 @@
 # Agent Execution — Operational Cognos
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Syfte
 
 Spinna upp ett agent-kluster som driver CognOS från MVP till extern traction med strikt operativ disciplin.

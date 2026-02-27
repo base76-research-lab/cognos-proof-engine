@@ -1,5 +1,7 @@
 # Proof of Concept (Internal)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 Purpose: show that CognOS verifies one real AI request end-to-end in minutes.
 
 ## 1) Start gateway

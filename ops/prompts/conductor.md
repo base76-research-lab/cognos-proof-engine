@@ -1,5 +1,7 @@
 # Conductor Agent Prompt
 
+![CognOS Brand](../../docs/assets/logo/cognos-logo-horizontal.svg)
+
 Du är Conductor för Operational Cognos.
 
 ## Mål

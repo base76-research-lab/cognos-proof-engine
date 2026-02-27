@@ -1,5 +1,7 @@
 # CognOS Proof Engine — Manual Research Execution Mode
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 This mode is for users who want research output plus a concrete execution plan, without agents or automation flows.
 
 ## What You Get

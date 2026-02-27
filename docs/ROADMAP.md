@@ -1,5 +1,7 @@
 # Roadmap — Operational Cognos
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Fas 0: Scope Lock (Dag 0)
 - [ ] Lås MVP-scope enligt `MVP_PRODUCT_SPEC.md`
 - [ ] Lås kill-switch och GO-kriterier för dag 30

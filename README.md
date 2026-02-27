@@ -4,7 +4,7 @@
 
 > **CognOS Proof Engine** — From verified progress to public trust.
 
-**Value proposition:** CognOS adds trust verification to AI API traffic with a minimal integration surface.
+**Value proposition:** CognOS is trust infrastructure that verifies AI outputs and produces audit-ready trust evidence.
 
 ![PoC Ready](https://img.shields.io/badge/PoC-Ready-16a34a)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)
@@ -30,7 +30,7 @@ Supports providers:
 
 Core positioning:
 
-**Trust Infrastructure for AI**
+**CognOS is trust infrastructure for AI.**
 
 Category line:
 

@@ -31,6 +31,8 @@ export COGNOS_UPSTREAM_AUTH="Bearer sk-..."
 # export COGNOS_INSTANCE_OPENAI_API_KEY="sk-..."
 # export COGNOS_INSTANCE_GOOGLE_API_KEY="..."
 # export COGNOS_INSTANCE_CLAUDE_API_KEY="..."
+# export COGNOS_INSTANCE_MISTRAL_API_KEY="..."
+# export COGNOS_INSTANCE_OLLAMA_API_KEY="..."
 
 # B) Local Ollama (no upstream key)
 # unset COGNOS_UPSTREAM_AUTH
@@ -41,6 +43,8 @@ cognos chat "What are the key GDPR principles?" --mode monitor
 # cognos chat "Summarize EU AI Act" --mode monitor --model openai:gpt-4o-mini
 # cognos chat "Summarize EU AI Act" --mode monitor --model google:gemini-2.0-flash-001
 # cognos chat "Summarize EU AI Act" --mode monitor --model claude:claude-sonnet-4
+# cognos chat "Summarize EU AI Act" --mode monitor --model mistral:mistral-small-latest
+# cognos chat "Summarize EU AI Act" --mode monitor --model ollama:llama3.2
 ```
 
 If `pip install -e .` fails with `externally-managed-environment` (PEP 668), use one of:

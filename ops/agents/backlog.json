@@ -70,7 +70,7 @@
       "title": "Första externa integrationsmålet",
       "owner": "growth",
       "priority": "P0",
-      "status": "in_progress",
+      "status": "todo",
       "tags": [
         "traction",
         "week2"
@@ -96,6 +96,23 @@
         "Körbar utan manuella JSON-edits"
       ],
       "completion_notes": "sync-tvv från trace-db fungerar, smoke_oc006 passerar"
+    },
+    {
+      "id": "OC-007",
+      "title": "Automatisera social distribution via n8n",
+      "owner": "growth",
+      "priority": "P0",
+      "status": "todo",
+      "tags": [
+        "growth",
+        "n8n",
+        "distribution"
+      ],
+      "definition_of_done": [
+        "Content pipeline genererar LinkedIn/X payload från agentdata",
+        "n8n workflow publicerar via credentials/env",
+        "Minst ett validerat testflöde end-to-end"
+      ]
     }
   ]
 }

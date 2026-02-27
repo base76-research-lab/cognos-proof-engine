@@ -1,8 +1,34 @@
-# Contributing to CognOS Proof Engine
+# Contributing to CognOS
 
-Thanks for contributing.
+Thanks for contributing! We're building trust infrastructure for AI. Here's how to help.
 
-## Fast path
+## 🚀 Contribution Paths
+
+### 👨‍💻 Code Contributions
+- Add support for new LLM providers
+- Improve signal/uncertainty detection
+- Optimize gateway performance
+- Write integration examples
+
+### 📚 Documentation
+- Improve onboarding guides
+- Write compliance guides (GDPR, EU AI Act, SOC2)
+- Add integration examples (LangChain, AutoGen, etc.)
+- Create video tutorials
+
+### 🔬 Research
+- Improve epistemic uncertainty quantification
+- Formal verification of trust decisions
+- Divergence detection methods
+- Adversarial robustness
+
+### 🏢 Community
+- Share use cases and lessons learned
+- Help other users in discussions
+- Organize meetups or workshops
+- Contribute to policy/governance discussions
+
+## Fast Path
 
 1. Fork the repo
 2. Create a branch: `feat/short-description`
@@ -16,6 +42,7 @@ Thanks for contributing.
 - Clear problem statements
 - Reproducible bug reports
 - Docs updates for behavior changes
+- Tests for new features (see `tests/` for examples)
 
 ## Development checks
 

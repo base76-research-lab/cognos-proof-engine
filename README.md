@@ -9,6 +9,7 @@
 ![PoC Ready](https://img.shields.io/badge/PoC-Ready-16a34a)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)
 ![Gateway](https://img.shields.io/badge/API-OpenAI%20Compatible-8b5cf6)
+[![Works with Lovable](https://img.shields.io/badge/Works%20with-Lovable-ff4f7a)](https://lovable.dev/)
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 
@@ -17,6 +18,7 @@
 - **Quickstart (5 min):** `docs/DEVELOPER_ONBOARDING.md`
 - **Run internal PoC:** `docs/PROOF_OF_CONCEPT_INTERNAL.md`
 - **Landing page:** https://base76.se/en/cognos-trust-infrastructure/
+- **Works with Lovable:** https://lovable.dev/
 
 Core positioning:
 
@@ -281,6 +283,8 @@ Run:
    - `docs/PROOF_OF_CONCEPT_INTERNAL.md`
 - Public proof snapshot:
    - `docs/PROOF_SNAPSHOT_2026-02-27.md`
+- Vibecoding planning mode (Lovable):
+   - `docs/VIBECODING_PLANNING_MODE.md`
 
 ## Public Endpoint Deployment
 

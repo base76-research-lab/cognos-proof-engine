@@ -1,8 +1,77 @@
 # CognOS Proof Engine
 
+![CognOS Logo](docs/assets/logo/cognos-logo-horizontal.svg)
+
 > **CognOS Proof Engine** — From verified progress to public trust.
 
 **Value proposition:** CognOS adds trust verification to AI API traffic with a minimal integration surface.
+
+![PoC Ready](https://img.shields.io/badge/PoC-Ready-16a34a)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB)
+![Gateway](https://img.shields.io/badge/API-OpenAI%20Compatible-8b5cf6)
+
+![CognOS Flow](docs/assets/cognos-proof-flow.svg)
+
+## Start Here
+
+- **Quickstart (5 min):** `docs/DEVELOPER_ONBOARDING.md`
+- **Run internal PoC:** `docs/PROOF_OF_CONCEPT_INTERNAL.md`
+- **Landing page:** https://base76.se/en/cognos-trust-infrastructure/
+
+Core positioning:
+
+**Trust Infrastructure for AI**
+
+Category line:
+
+**The missing trust layer for the AI economy.**
+
+## External Quickstart (3 Steps)
+
+Use this when someone wants to test “proofing your concept/company” fast.
+
+1. Clone
+
+```bash
+git clone https://github.com/base76-research-lab/operational-cognos.git
+cd operational-cognos
+```
+
+2. Install
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+```
+
+3. Start + run first proof request
+
+```bash
+export COGNOS_UPSTREAM_BASE_URL="https://openrouter.ai/api/v1"
+export COGNOS_UPSTREAM_API_KEY="YOUR_PROVIDER_KEY"
+export COGNOS_MOCK_UPSTREAM=false
+
+python3 -m uvicorn --app-dir src main:app --host 127.0.0.1 --port 8788
+```
+
+In another terminal:
+
+```bash
+curl -sS http://127.0.0.1:8788/v1/chat/completions \
+   -H 'Content-Type: application/json' \
+   -d '{
+      "model": "openai:gpt-4o-mini",
+      "messages": [{"role":"user","content":"Proofread and stress-test my concept pitch in 5 bullets."}],
+      "cognos": {"mode":"monitor"}
+   }'
+```
+
+Switch model prefix as needed:
+
+- `openai:gpt-4o-mini`
+- `google:gemini-2.0-flash-001`
+- `claude:claude-sonnet-4`
 
 ## API Contract (Source of Truth)
 
@@ -26,13 +95,57 @@ Only the operational engine components built and run by agents:
 ## Gateway Runtime
 
 1. Install dependencies: `pip install -r requirements.txt`
-2. Set environment variables (copy `.env.example`)
+2. Set environment variables (copy `.env.example`) and choose upstream mode:
+   - Option A (OpenAI API key):
+      - `export COGNOS_UPSTREAM_BASE_URL="https://api.openai.com/v1"`
+      - `export COGNOS_UPSTREAM_API_KEY="sk-..."`
+      - `export COGNOS_ALLOW_NO_UPSTREAM_AUTH=false`
+   - Option B (Local Ollama):
+      - `export COGNOS_UPSTREAM_BASE_URL="http://127.0.0.1:11434/v1"`
+      - `export COGNOS_UPSTREAM_API_KEY=""`
+      - `export COGNOS_ALLOW_NO_UPSTREAM_AUTH=true`
+   - In both cases:
+      - `export COGNOS_MOCK_UPSTREAM=false`
+   - Optional provider instances (no key required yet, scaffold only):
+      - `export COGNOS_INSTANCE_OPENAI_BASE_URL="https://api.openai.com/v1"`
+      - `export COGNOS_INSTANCE_GOOGLE_BASE_URL="https://openrouter.ai/api/v1"`
+      - `export COGNOS_INSTANCE_CLAUDE_BASE_URL="https://openrouter.ai/api/v1"`
+      - add keys later with:
+         - `COGNOS_INSTANCE_OPENAI_API_KEY`
+         - `COGNOS_INSTANCE_GOOGLE_API_KEY`
+         - `COGNOS_INSTANCE_CLAUDE_API_KEY`
 3. Start server: `python3 -m uvicorn --app-dir src main:app --reload --port 8788`
 4. Health check: `GET http://127.0.0.1:8788/healthz`
 
 Ubuntu/PEP668 note:
 
 - If `pip` is locked in the system environment, run: `python3 -m pip install --user --break-system-packages -r requirements.txt`
+
+### Local Ollama as Upstream
+
+Use this when OpenAI quota is exhausted and you want local inference.
+
+- Start Ollama locally (default endpoint `http://127.0.0.1:11434`)
+- Set env:
+   - `export COGNOS_UPSTREAM_BASE_URL="http://127.0.0.1:11434/v1"`
+   - `export COGNOS_UPSTREAM_API_KEY=""`
+   - `export COGNOS_ALLOW_NO_UPSTREAM_AUTH=true`
+   - `export COGNOS_MOCK_UPSTREAM=false`
+- Use an Ollama model id in requests, e.g. `llama3.2:latest`
+
+### Prefix-based Provider Routing
+
+Gateway can route by model prefix without changing endpoint:
+
+- `openai:gpt-4o-mini`
+- `google:gemini-2.0-flash-001`
+- `claude:claude-sonnet-4`
+
+Behavior:
+
+- If instance env vars are set, prefix chooses that instance base URL/key.
+- If no instance key exists yet, request can still run only if your active upstream allows authless mode (e.g. local Ollama with `COGNOS_ALLOW_NO_UPSTREAM_AUTH=true`).
+- For OpenRouter-style upstreams, prefixed models are normalized automatically.
 
 ## Smoke + Validation
 
@@ -164,6 +277,8 @@ Run:
 
 - External onboarding guide:
    - `docs/DEVELOPER_ONBOARDING.md`
+- Internal PoC flow:
+   - `docs/PROOF_OF_CONCEPT_INTERNAL.md`
 
 ## Public Endpoint Deployment
 
@@ -179,3 +294,9 @@ Run:
 
 - Ready-to-use outreach copy:
    - `docs/OUTREACH_AGENT_BUILDERS.md`
+
+---
+
+![CognOS Mark](docs/assets/logo/cognos-logo-mark.svg)
+
+**CognOS — Trust Infrastructure for AI**

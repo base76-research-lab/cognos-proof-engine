@@ -1,0 +1,45 @@
+<svg width="1600" height="500" viewBox="0 0 1600 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CognOS header banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="100" y1="60" x2="460" y2="390">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="45%" stop-color="#2DD4BF"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="500" rx="24" fill="url(#bg)"/>
+
+  <g opacity="0.35">
+    <circle cx="1420" cy="110" r="180" fill="#1D4ED8"/>
+    <circle cx="1380" cy="420" r="150" fill="#0F766E"/>
+  </g>
+
+  <g transform="translate(70 70)">
+    <path d="M180 20L330 108V282L180 370L30 282V108L180 20Z" fill="#0F172A" stroke="url(#brand)" stroke-width="10"/>
+    <circle cx="180" cy="195" r="70" fill="#0B1220" stroke="#67E8F9" stroke-width="7"/>
+    <circle cx="180" cy="195" r="22" fill="url(#brand)"/>
+
+    <path d="M180 72V126" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/>
+    <path d="M282 132L236 158" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/>
+    <path d="M282 258L236 232" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/>
+    <path d="M180 318V264" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/>
+    <path d="M78 258L124 232" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/>
+    <path d="M78 132L124 158" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(470 0)">
+    <text x="0" y="230" fill="#F3F4F6" font-family="Inter, Segoe UI, Roboto, Arial, sans-serif" font-size="102" font-weight="800" letter-spacing="-2">
+      CognOS
+    </text>
+    <text x="2" y="286" fill="#A5B4FC" font-family="Inter, Segoe UI, Roboto, Arial, sans-serif" font-size="42" font-weight="650">
+      Trust Infrastructure for AI
+    </text>
+    <text x="2" y="340" fill="#CBD5E1" font-family="Inter, Segoe UI, Roboto, Arial, sans-serif" font-size="26" font-weight="500">
+      Add Trust Verification to AI in Minutes.
+    </text>
+  </g>
+</svg>

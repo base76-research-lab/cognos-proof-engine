@@ -97,3 +97,14 @@ This flow is the distribution layer in **CognOS Proof Engine**.
    - `python3 src/proof_engine_autopilot.py --no-git`
 - Commit without push:
    - `python3 src/proof_engine_autopilot.py --no-push`
+
+## Manual Research Mode (No Agents)
+
+- Generate a manual research brief + execution plan:
+   - `python3 src/research_execution_plan.py`
+- Print plan to terminal:
+   - `python3 src/research_execution_plan.py --stdout`
+- Include more prioritized items:
+   - `python3 src/research_execution_plan.py --top 5`
+- Guide:
+   - `docs/RESEARCH_EXECUTION_MODE.md`

@@ -11,11 +11,12 @@
 ![Gateway](https://img.shields.io/badge/API-OpenAI%20Compatible-8b5cf6)
 [![Works with Lovable](https://img.shields.io/badge/Works%20with-Lovable-ff4f7a)](https://lovable.dev/)
 
-Supported providers:
+Supports providers:
 
 [![OpenAI](https://img.shields.io/badge/OpenAI-Supported-412991?logo=openai&logoColor=white)](https://openai.com/)
 [![Google](https://img.shields.io/badge/Google-Supported-4285F4?logo=google&logoColor=white)](https://ai.google/)
 [![Claude](https://img.shields.io/badge/Claude-Supported-D97706?logo=anthropic&logoColor=white)](https://www.anthropic.com/claude)
+[![Mistral](https://img.shields.io/badge/Mistral-Supported-111827)](https://mistral.ai/)
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 

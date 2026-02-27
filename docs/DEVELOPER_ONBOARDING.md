@@ -23,6 +23,20 @@ export COGNOS_UPSTREAM_AUTH="Bearer YOUR_UPSTREAM_KEY"
 cognos chat "What are the key GDPR principles?" --mode monitor
 ```
 
+If `pip install -e .` fails with `externally-managed-environment` (PEP 668), use one of:
+
+```bash
+python3 -m pip install --user --break-system-packages -e .
+```
+
+or create a clean local venv:
+
+```bash
+python3 -m venv .venv-local
+. .venv-local/bin/activate
+pip install -e .
+```
+
 Then fetch trace using the returned `X-Cognos-Trace-Id`:
 
 ```bash
@@ -41,3 +55,5 @@ See:
 - `401 Unauthorized`: set `COGNOS_API_KEY` correctly.
 - `500 Missing upstream authorization`: set `COGNOS_UPSTREAM_AUTH` or configure server-side upstream key.
 - No trace found: verify exact `trace_id` from response headers.
+- Local server import error (`ModuleNotFoundError: No module named 'src'`): start with app dir:
+	- `python3 -m uvicorn --app-dir src main:app --host 127.0.0.1 --port 8788`

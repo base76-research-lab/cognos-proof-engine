@@ -16,6 +16,10 @@ This runbook publishes a web-reachable CognOS endpoint for external developers.
 - `COGNOS_TRACE_DB` (e.g. `data/traces.sqlite3`)
 - `COGNOS_MOCK_UPSTREAM=false`
 
+## Local command reference
+- Local dev run command:
+   - `python3 -m uvicorn --app-dir src main:app --host 127.0.0.1 --port 8788`
+
 ## Option A — Railway (fastest)
 1. Create new Railway project from this repository.
 2. Use included `Procfile` start command:

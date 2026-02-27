@@ -80,35 +80,35 @@ def run_browser_assist(
         x_page = context.new_page()
         x_page.goto(compose_urls["x"], wait_until="domcontentloaded")
 
-        print("\nPlaywright assist aktiv.")
-        print("1) Logga in manuellt i respektive flik om du inte redan är inloggad")
-        print("2) Verifiera texten")
+        print("\nPlaywright assist active.")
+        print("1) Log in manually in each tab if you are not already signed in")
+        print("2) Verify the generated text")
 
         if auto_linkedin_click:
             if arm_key != "POST_NOW":
-                print("\nAuto-click avbruten: ange --arm-key POST_NOW för att armera publicering.")
+                print("\nAuto-click aborted: use --arm-key POST_NOW to arm publishing.")
             else:
-                input("\nTryck Enter när LinkedIn-fliken är redo (inloggad + text verifierad)...")
-                print(f"Armerad auto-click om {countdown_seconds}s...")
+                input("\nPress Enter when the LinkedIn tab is ready (signed in + text verified)...")
+                print(f"Armed auto-click in {countdown_seconds}s...")
                 time.sleep(max(countdown_seconds, 0))
                 clicked = auto_click_linkedin_post(linkedin_page)
                 if clicked:
-                    print("LinkedIn: auto-click utförd på publiceringsknappen.")
+                    print("LinkedIn: auto-click executed on publish button.")
                 else:
-                    print("LinkedIn: kunde inte hitta aktiv publiceringsknapp, klicka manuellt.")
+                    print("LinkedIn: could not find active publish button, click manually.")
         else:
-            print("3) Klicka Publicera manuellt")
+            print("3) Click Publish manually")
 
-        input("\nTryck Enter när du är klar för att stänga webbläsaren...")
+        input("\nPress Enter when you are done to close the browser...")
 
         context.close()
 
 
 def open_in_default_browser(compose_urls: dict[str, str]) -> None:
-    print("\nÖppnar compose-URL:er i systemets standardwebbläsare...")
+    print("\nOpening compose URLs in the system default browser...")
     webbrowser.open(compose_urls["linkedin"])
     webbrowser.open(compose_urls["x"])
-    print("Klart. Logga in/posta manuellt i öppnade flikar.")
+    print("Done. Sign in/publish manually in the opened tabs.")
 
 
 def main() -> None:
@@ -178,8 +178,8 @@ def main() -> None:
             user_data_dir=args.user_data_dir,
         )
     except Exception as exc:
-        print("\nPlaywright-session misslyckades:", exc)
-        print("Tips: kör --browser-channel chrome eller --open-default-browser")
+        print("\nPlaywright session failed:", exc)
+        print("Tip: run with --browser-channel chrome or --open-default-browser")
 
 
 if __name__ == "__main__":

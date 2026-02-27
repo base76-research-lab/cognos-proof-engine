@@ -40,23 +40,23 @@ def build_post_payloads(state: dict[str, Any], backlog: dict[str, Any]) -> dict[
     external = int(snapshot.get("external_active_integrations", 0))
 
     highlights = get_done_highlights(backlog)
-    highlights_text = "\n".join([f"- {item}" for item in highlights]) if highlights else "- Inga klara tasks ännu"
+    highlights_text = "\n".join([f"- {item}" for item in highlights]) if highlights else "- No completed tasks yet"
 
     headline_variants = [
-        "CognOS build-log: från forskning till körbar trust-infrastruktur",
-        "Veckologg från Operational Cognos: shippar trust-lager i produktionstempo",
-        "CognOS execution update: konkret progression mot verifierbar AI-trust",
+        "CognOS build log: from research to runnable trust infrastructure",
+        "Operational Cognos weekly log: shipping trust layer at production pace",
+        "CognOS execution update: concrete progress toward verifiable AI trust",
     ]
     headline = random.choice(headline_variants)
 
     linkedin = (
         f"{headline}\n\n"
-        f"Status just nu:\n"
+        f"Current status:\n"
         f"- TVV requests: {tvv_requests}\n"
         f"- TVV tokens: {tvv_tokens}\n"
-        f"- Externa integrationer: {external}\n\n"
-        f"Senaste leveranser:\n{highlights_text}\n\n"
-        "Nästa fokus: extern traction + enforce-usage i verklig trafik.\n"
+        f"- External integrations: {external}\n\n"
+        f"Latest deliveries:\n{highlights_text}\n\n"
+        "Next focus: external traction + enforce-usage in real traffic.\n"
         "#CognOS #AITrust #ReliabilityEngineering #AppliedAI"
     )
 

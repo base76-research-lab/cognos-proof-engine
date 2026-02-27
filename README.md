@@ -2,6 +2,8 @@
 
 > **CognOS Proof Engine** — From verified progress to public trust.
 
+**Value proposition:** CognOS adds trust verification to AI API traffic with a minimal integration surface.
+
 ## What This Repo Contains
 
 Only the operational engine components built and run by agents:
@@ -108,3 +110,10 @@ This flow is the distribution layer in **CognOS Proof Engine**.
    - `python3 src/research_execution_plan.py --top 5`
 - Guide:
    - `docs/RESEARCH_EXECUTION_MODE.md`
+
+## Externalization Sprint (14 Days)
+
+Current bottleneck is external traffic, not internal capability.
+
+- Sprint plan:
+   - `docs/EXTERNALIZATION_SPRINT_14D.md`

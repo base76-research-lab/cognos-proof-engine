@@ -11,6 +11,10 @@
 ![Gateway](https://img.shields.io/badge/API-OpenAI%20Compatible-8b5cf6)
 [![Works with Lovable](https://img.shields.io/badge/Works%20with-Lovable-ff4f7a)](https://lovable.dev/)
 
+<a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer">
+   <img src="docs/assets/partners/lovable-logo.svg" alt="Lovable" width="180" />
+</a>
+
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 
 ## Start Here

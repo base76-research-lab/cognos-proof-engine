@@ -2,6 +2,10 @@
 
 **Can be used on Lovable:** https://lovable.dev/
 
+<a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer">
+	<img src="assets/partners/lovable-logo.svg" alt="Lovable" width="180" />
+</a>
+
 Syfte: använd CognOS som planeringslager före implementation, så att vibecoding ger exakt bygginstruktion istället för vag idé.
 
 ## Kärnprincip
@@ -142,4 +146,4 @@ Rätt använt ger detta:
 ## Brand note
 
 - Referera till Lovable med text+länk i första hand.
-- Ladda inte upp tredje parts logotyper i detta repo utan uttryckligt tillstånd eller officiella brand-riktlinjer.
+- Använd endast logo-filer som ni själva har tillstånd att publicera.

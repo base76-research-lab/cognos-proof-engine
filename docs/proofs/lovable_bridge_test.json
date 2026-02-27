@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-02-27T15:12:03.367633+00:00",
+  "trace_id": "tr_4deff0c5db40",
+  "decision": "PASS",
+  "trust_score": null,
+  "model": "openai:gpt-4o-mini",
+  "handoff": {
+    "one_sentence_goal": "Build a single-page CognOS product landing page",
+    "problem_statement": "Need an execution-ready Lovable implementation brief with explicit scope and acceptance criteria.",
+    "objective": [
+      "Deliver an MVP implementation plan with no ambiguity",
+      "Produce copy/paste prompt for Lovable",
+      "Define acceptance criteria that can be validated quickly"
+    ],
+    "scope_in": [
+      "Single focused MVP delivery",
+      "Explicit section/component requirements",
+      "Validation checklist"
+    ],
+    "scope_out": [
+      "Unrequested extra pages/features",
+      "Backend architecture changes unless explicitly requested",
+      "Non-essential design polish"
+    ],
+    "functional_requirements": [
+      "Use goal as primary deliverable: Build a single-page CognOS product landing page",
+      "Incorporate context: Target: developers and CTOs",
+      "Enforce constraints: No backend; one page only; include GitHub CTA"
+    ],
+    "acceptance_criteria": [
+      "All required deliverables are present",
+      "No out-of-scope features included",
+      "Output can be pasted directly into Lovable"
+    ],
+    "lovable_build_prompt": "Build this exactly as specified.\\n\\nGoal: Build a single-page CognOS product landing page\\nContext: Target: developers and CTOs\\nConstraints: No backend; one page only; include GitHub CTA\\n\\nDo NOT implement anything outside the requested MVP scope.\\nReturn changed files and validation results.",
+    "qa_test_prompt": "Validate implementation against acceptance criteria.\\nReport pass/fail per criterion and list any missing requirements."
+  },
+  "raw_completion": "Mock response from CognOS gateway."
+}

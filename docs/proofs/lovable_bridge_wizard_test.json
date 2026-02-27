@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-02-27T15:18:47.086114+00:00",
+  "trace_id": "tr_ea5dce138d71",
+  "decision": "PASS",
+  "trust_score": null,
+  "model": "openai:gpt-4o-mini",
+  "handoff": {
+    "one_sentence_goal": "Build: CognOS landing page for AI trust",
+    "problem_statement": "Need an execution-ready Lovable implementation brief with explicit scope and acceptance criteria.",
+    "objective": [
+      "Deliver an MVP implementation plan with no ambiguity",
+      "Produce copy/paste prompt for Lovable",
+      "Define acceptance criteria that can be validated quickly"
+    ],
+    "scope_in": [
+      "Single focused MVP delivery",
+      "Explicit section/component requirements",
+      "Validation checklist"
+    ],
+    "scope_out": [
+      "Unrequested extra pages/features",
+      "Backend architecture changes unless explicitly requested",
+      "Non-essential design polish"
+    ],
+    "functional_requirements": [
+      "Use goal as primary deliverable: Build: CognOS landing page for AI trust",
+      "Incorporate context: Audience: Developers and CTOs. Verification focus: Traceability and compliance. Success definition: Ready for Lovable copy-paste.",
+      "Enforce constraints: Must have: Hero, CTA, proof snapshot. Must not have: No backend, no extra pages. Technical constraints: One page only. Deadline: Monday."
+    ],
+    "acceptance_criteria": [
+      "All required deliverables are present",
+      "No out-of-scope features included",
+      "Output can be pasted directly into Lovable"
+    ],
+    "lovable_build_prompt": "Build this exactly as specified.\\n\\nGoal: Build: CognOS landing page for AI trust\\nContext: Audience: Developers and CTOs. Verification focus: Traceability and compliance. Success definition: Ready for Lovable copy-paste.\\nConstraints: Must have: Hero, CTA, proof snapshot. Must not have: No backend, no extra pages. Technical constraints: One page only. Deadline: Monday.\\n\\nDo NOT implement anything outside the requested MVP scope.\\nReturn changed files and validation results.",
+    "qa_test_prompt": "Validate implementation against acceptance criteria.\\nReport pass/fail per criterion and list any missing requirements."
+  },
+  "raw_completion": "Mock response from CognOS gateway.",
+  "questionnaire_answers": {
+    "build_goal": "CognOS landing page for AI trust",
+    "audience": "Developers and CTOs",
+    "verification_focus": "Traceability and compliance",
+    "must_have": "Hero, CTA, proof snapshot",
+    "must_not_have": "No backend, no extra pages",
+    "tech_constraints": "One page only",
+    "success_definition": "Ready for Lovable copy-paste",
+    "deadline": "Monday"
+  }
+}

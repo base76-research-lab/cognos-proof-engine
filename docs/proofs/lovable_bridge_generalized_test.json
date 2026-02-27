@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-02-27T15:19:54.583758+00:00",
+  "trace_id": "tr_d9c66533da70",
+  "decision": "PASS",
+  "trust_score": null,
+  "model": "openai:gpt-4o-mini",
+  "target": "Lovable",
+  "intent_mode": "both",
+  "handoff": {
+    "one_sentence_goal": "Verify and refine a landing page spec",
+    "problem_statement": "Need an execution-ready implementation brief with explicit scope and acceptance criteria.",
+    "objective": [
+      "Deliver an MVP implementation plan with no ambiguity",
+      "Produce copy/paste prompt for Lovable",
+      "Define acceptance criteria that can be validated quickly"
+    ],
+    "scope_in": [
+      "Single focused MVP delivery",
+      "Explicit section/component requirements",
+      "Validation checklist"
+    ],
+    "scope_out": [
+      "Unrequested extra pages/features",
+      "Backend architecture changes unless explicitly requested",
+      "Non-essential design polish"
+    ],
+    "functional_requirements": [
+      "Use goal as primary deliverable: Verify and refine a landing page spec",
+      "Incorporate context: Target: startup web team",
+      "Enforce constraints: No backend, one page"
+    ],
+    "acceptance_criteria": [
+      "All required deliverables are present",
+      "No out-of-scope features included",
+      "Output can be pasted directly into the target tool"
+    ],
+    "build_prompt": "Build this exactly as specified.\\n\\nTarget tool: Lovable\\nGoal: Verify and refine a landing page spec\\nContext: Target: startup web team\\nConstraints: No backend, one page\\n\\nDo NOT implement anything outside the requested MVP scope.\\nReturn changed files and validation results.",
+    "lovable_build_prompt": "Build this exactly as specified.\\n\\nTarget tool: Lovable\\nGoal: Verify and refine a landing page spec\\nContext: Target: startup web team\\nConstraints: No backend, one page\\n\\nDo NOT implement anything outside the requested MVP scope.\\nReturn changed files and validation results.",
+    "verification_prompt": "Verify this implementation against the acceptance criteria.\\nReturn pass/fail per criterion and concrete evidence.",
+    "qa_test_prompt": "Validate implementation against acceptance criteria.\\nReport pass/fail per criterion and list any missing requirements."
+  },
+  "raw_completion": "Mock response from CognOS gateway."
+}

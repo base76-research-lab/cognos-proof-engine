@@ -169,6 +169,8 @@ Run:
 
 - Minimal deploy + security runbook (Fly.io / Railway):
    - `docs/PUBLIC_DEPLOY_RUNBOOK.md`
+- Live launch copy/paste checklist:
+   - `docs/LIVE_LAUNCH_CHECKLIST.md`
 - Included deploy files:
    - `fly.toml` (Fly.io)
    - `Procfile` (Railway/Procfile platforms)

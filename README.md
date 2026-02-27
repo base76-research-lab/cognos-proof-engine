@@ -15,6 +15,12 @@
    <img src="docs/assets/partners/lovable-logo.svg" alt="Lovable" width="180" />
 </a>
 
+Supported providers:
+
+[![OpenAI](https://img.shields.io/badge/OpenAI-Enabled-412991)](https://openai.com/)
+[![Google](https://img.shields.io/badge/Google-Enabled-4285F4)](https://ai.google/)
+[![Claude](https://img.shields.io/badge/Claude-Enabled-D97706)](https://www.anthropic.com/claude)
+
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 
 ## Start Here

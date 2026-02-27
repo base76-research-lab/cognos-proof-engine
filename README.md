@@ -11,21 +11,11 @@
 ![Gateway](https://img.shields.io/badge/API-OpenAI%20Compatible-8b5cf6)
 [![Works with Lovable](https://img.shields.io/badge/Works%20with-Lovable-ff4f7a)](https://lovable.dev/)
 
-<a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer">
-   <img src="docs/assets/partners/lovable-logo.svg" alt="Lovable" width="180" />
-</a>
-
 Supported providers:
 
-<a href="https://openai.com/" target="_blank" rel="noopener noreferrer">
-   <img src="https://cdn.simpleicons.org/openai/FFFFFF" alt="OpenAI" width="28" />
-</a>
-<a href="https://ai.google/" target="_blank" rel="noopener noreferrer">
-   <img src="https://cdn.simpleicons.org/google/FFFFFF" alt="Google" width="28" />
-</a>
-<a href="https://www.anthropic.com/claude" target="_blank" rel="noopener noreferrer">
-   <img src="https://cdn.simpleicons.org/anthropic/FFFFFF" alt="Claude (Anthropic)" width="28" />
-</a>
+[![OpenAI](https://img.shields.io/badge/OpenAI-Supported-412991?logo=openai&logoColor=white)](https://openai.com/)
+[![Google](https://img.shields.io/badge/Google-Supported-4285F4?logo=google&logoColor=white)](https://ai.google/)
+[![Claude](https://img.shields.io/badge/Claude-Supported-D97706?logo=anthropic&logoColor=white)](https://www.anthropic.com/claude)
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 

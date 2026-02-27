@@ -1,0 +1,27 @@
+{
+  "name": "cognos_verify",
+  "description": "Verify an AI answer or draft using CognOS Trust Gateway. Returns decision, risk and trace_id for auditability.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "prompt": {
+        "type": "string",
+        "description": "The prompt or question that produced the draft."
+      },
+      "draft_answer": {
+        "type": "string",
+        "description": "The model draft to verify."
+      },
+      "mode": {
+        "type": "string",
+        "enum": ["monitor", "enforce"],
+        "default": "monitor"
+      },
+      "policy_id": {
+        "type": "string",
+        "default": "default_v1"
+      }
+    },
+    "required": ["prompt", "draft_answer"]
+  }
+}

@@ -36,11 +36,18 @@ def init_db() -> None:
                 status_code INTEGER NOT NULL,
                 model TEXT,
                 request_fingerprint TEXT,
+                response_fingerprint TEXT,
                 envelope_json TEXT,
                 metadata_json TEXT
             )
             """
         )
+        existing_cols = {
+            row[1]
+            for row in connection.execute("PRAGMA table_info(traces)").fetchall()
+        }
+        if "response_fingerprint" not in existing_cols:
+            connection.execute("ALTER TABLE traces ADD COLUMN response_fingerprint TEXT")
         connection.commit()
     finally:
         connection.close()
@@ -52,6 +59,8 @@ def save_trace(record: dict[str, Any]) -> None:
 
     envelope_json = json.dumps(record.get("envelope", {}), ensure_ascii=False)
     metadata_json = json.dumps(record.get("metadata", {}), ensure_ascii=False)
+    request_fingerprint_json = json.dumps(record.get("request_fingerprint", {}), ensure_ascii=False)
+    response_fingerprint_json = json.dumps(record.get("response_fingerprint", {}), ensure_ascii=False)
 
     connection = sqlite3.connect(db_path)
     try:
@@ -68,9 +77,10 @@ def save_trace(record: dict[str, Any]) -> None:
                 status_code,
                 model,
                 request_fingerprint,
+                response_fingerprint,
                 envelope_json,
                 metadata_json
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 record["trace_id"],
@@ -82,7 +92,8 @@ def save_trace(record: dict[str, Any]) -> None:
                 int(bool(record.get("is_stream", False))),
                 int(record.get("status_code", 200)),
                 record.get("model"),
-                record.get("request_fingerprint"),
+                request_fingerprint_json,
+                response_fingerprint_json,
                 envelope_json,
                 metadata_json,
             ),
@@ -111,9 +122,12 @@ def get_trace(trace_id: str) -> dict[str, Any] | None:
     envelope = json.loads(row["envelope_json"]) if row["envelope_json"] else {}
     metadata = json.loads(row["metadata_json"]) if row["metadata_json"] else {}
 
+    request_fingerprint = _decode_fingerprint(row["request_fingerprint"])
+    response_fingerprint = _decode_fingerprint(row["response_fingerprint"])
+
     return {
         "trace_id": row["trace_id"],
-        "created_at": row["created_at"],
+        "created": row["created_at"],
         "decision": row["decision"],
         "policy": row["policy"],
         "trust_score": row["trust_score"],
@@ -121,10 +135,36 @@ def get_trace(trace_id: str) -> dict[str, Any] | None:
         "is_stream": bool(row["is_stream"]),
         "status_code": row["status_code"],
         "model": row["model"],
-        "request_fingerprint": row["request_fingerprint"],
+        "request_fingerprint": request_fingerprint,
+        "response_fingerprint": response_fingerprint,
         "envelope": envelope,
         "metadata": metadata,
     }
+
+
+def _decode_fingerprint(raw: str | None) -> dict[str, Any]:
+    default = {
+        "simhash": "sha256:0",
+        "embedding_hash": "sha256:0",
+        "length": 0,
+        "model_id": None,
+        "cluster_id": None,
+    }
+    if not raw:
+        return default
+    try:
+        payload = json.loads(raw)
+        if isinstance(payload, dict):
+            return {
+                "simhash": str(payload.get("simhash", default["simhash"])),
+                "embedding_hash": str(payload.get("embedding_hash", default["embedding_hash"])),
+                "length": int(payload.get("length", 0)),
+                "model_id": payload.get("model_id"),
+                "cluster_id": payload.get("cluster_id"),
+            }
+    except Exception:
+        return default
+    return default
 
 
 def aggregate_tvv() -> dict[str, int]:

@@ -12,6 +12,7 @@ if TEST_DB.exists():
 
 os.environ.setdefault("COGNOS_MOCK_UPSTREAM", "true")
 os.environ["COGNOS_TRACE_DB"] = str(TEST_DB)
+os.environ["COGNOS_GATEWAY_API_KEY"] = "test-gateway-key"
 
 from main import app
 
@@ -21,6 +22,7 @@ def run_smoke() -> None:
         for index in range(3):
             response = client.post(
                 "/v1/chat/completions",
+                headers={"x-api-key": "test-gateway-key"},
                 json={
                     "model": "openai:gpt-4.1-mini",
                     "messages": [{"role": "user", "content": f"TVV sample {index}"}],

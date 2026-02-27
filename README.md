@@ -4,6 +4,16 @@
 
 **Value proposition:** CognOS adds trust verification to AI API traffic with a minimal integration surface.
 
+## API Contract (Source of Truth)
+
+- Canonical OpenAPI MVP:
+   - `docs/spec/cognos_openapi_mvp.yaml`
+- Engine parity checklist:
+   - `docs/ENGINE_PARITY.md`
+
+Contract-first policy:
+- Any API behavior change must update both OpenAPI and contract smoke tests.
+
 ## What This Repo Contains
 
 Only the operational engine components built and run by agents:
@@ -117,3 +127,8 @@ Current bottleneck is external traffic, not internal capability.
 
 - Sprint plan:
    - `docs/EXTERNALIZATION_SPRINT_14D.md`
+
+## Multi-Framework Integration Pack
+
+- Anthropic tool schema/wrapper, MCP-compatible bridge, LangChain, AutoGen, and CrewAI wrappers:
+   - `ops/integrations/README.md`

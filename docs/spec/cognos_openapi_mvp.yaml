@@ -1,0 +1,362 @@
+openapi: 3.0.3
+info:
+  title: CognOS Trust Gateway API (MVP)
+  version: 0.1.0
+servers:
+  - url: https://api.cognos.ai
+paths:
+  /v1/chat/completions:
+    post:
+      summary: OpenAI-compatible chat completion with trust envelope
+      operationId: chatCompletions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatCompletionRequest"
+      responses:
+        "200":
+          description: Completion with CognOS trust envelope
+          headers:
+            X-Cognos-Trust-Score:
+              schema:
+                type: number
+                format: float
+                minimum: 0
+                maximum: 1
+              description: Normalized trust score (1=highest trust)
+            X-Cognos-Decision:
+              schema:
+                type: string
+                enum: [PASS, REFINE, ESCALATE, BLOCK]
+              description: CognOS policy decision
+            X-Cognos-Trace-Id:
+              schema:
+                type: string
+              description: Trace identifier for audits and reports
+            X-Cognos-Policy:
+              schema:
+                type: string
+              description: Effective policy id applied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatCompletionResponse"
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "429":
+          description: Rate limited
+        "500":
+          description: Internal error
+
+  /v1/traces/{trace_id}:
+    get:
+      summary: Retrieve trace details (auditable envelope)
+      operationId: getTrace
+      parameters:
+        - name: trace_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Trace record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TraceRecord"
+        "404":
+          description: Not found
+
+  /v1/reports/trust:
+    post:
+      summary: Generate a trust/compliance report for a set of trace IDs
+      operationId: createTrustReport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrustReportRequest"
+      responses:
+        "200":
+          description: Report artifact (JSON now; PDF later)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrustReportResponse"
+
+components:
+  schemas:
+    ChatCompletionRequest:
+      type: object
+      required: [model, messages]
+      properties:
+        model:
+          type: string
+          description: Upstream model selector (e.g. "openai:gpt-4.1-mini", "anthropic:claude-3.5-sonnet")
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChatMessage"
+        temperature:
+          type: number
+          format: float
+          nullable: true
+        max_tokens:
+          type: integer
+          nullable: true
+        cognos:
+          $ref: "#/components/schemas/CognosControl"
+
+    ChatMessage:
+      type: object
+      required: [role, content]
+      properties:
+        role:
+          type: string
+          enum: [system, user, assistant, tool]
+        content:
+          type: string
+
+    CognosControl:
+      type: object
+      description: CognOS policy + verification controls
+      properties:
+        mode:
+          type: string
+          enum: [monitor, enforce]
+          default: monitor
+          description: monitor=observe only, enforce=apply actions (refine/escalate/block)
+        policy_id:
+          type: string
+          default: default_v1
+        target_risk:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          nullable: true
+          description: Optional per-request risk target override
+        shadow_pct:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          default: 0.0
+          description: Fraction of calls to shadow-test with alternate models
+        shadow_models:
+          type: array
+          items:
+            type: string
+          description: Candidate upstream models for shadow tests
+        retention:
+          type: string
+          enum: [none, fingerprints, enhanced]
+          default: fingerprints
+          description: Data retention level (privacy tiers)
+
+    ChatCompletionResponse:
+      type: object
+      required: [id, object, created, choices, cognos]
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: chat.completion
+        created:
+          type: integer
+          description: Unix timestamp
+        choices:
+          type: array
+          items:
+            $ref: "#/components/schemas/Choice"
+        usage:
+          $ref: "#/components/schemas/Usage"
+        cognos:
+          $ref: "#/components/schemas/CognosEnvelope"
+
+    Choice:
+      type: object
+      required: [index, message, finish_reason]
+      properties:
+        index:
+          type: integer
+        message:
+          $ref: "#/components/schemas/ChatMessage"
+        finish_reason:
+          type: string
+
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+
+    CognosEnvelope:
+      type: object
+      required: [decision, risk, signals, trace_id, policy, attestation]
+      properties:
+        decision:
+          type: string
+          enum: [PASS, REFINE, ESCALATE, BLOCK]
+        risk:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        signals:
+          $ref: "#/components/schemas/SignalVector"
+        trace_id:
+          type: string
+        policy:
+          type: string
+        attestation:
+          $ref: "#/components/schemas/Attestation"
+        shadow:
+          $ref: "#/components/schemas/ShadowResult"
+
+    SignalVector:
+      type: object
+      description: Core epistemic signals (extend over time)
+      properties:
+        ue:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        ua:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        divergence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        citation_density:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        contradiction:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        out_of_distribution:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+
+    Attestation:
+      type: object
+      required: [hash, signed_by, ts]
+      properties:
+        hash:
+          type: string
+          description: sha256 of canonicalized envelope fields
+        signed_by:
+          type: string
+          example: cognos
+        ts:
+          type: string
+          format: date-time
+        signature:
+          type: string
+          nullable: true
+          description: Optional detached signature (Ed25519/JWS etc.)
+
+    ShadowResult:
+      type: object
+      nullable: true
+      properties:
+        enabled:
+          type: boolean
+        compared_models:
+          type: array
+          items:
+            type: string
+        divergence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        note:
+          type: string
+          nullable: true
+
+    TraceRecord:
+      type: object
+      required: [trace_id, created, request_fingerprint, response_fingerprint, envelope]
+      properties:
+        trace_id:
+          type: string
+        created:
+          type: string
+          format: date-time
+        request_fingerprint:
+          $ref: "#/components/schemas/Fingerprint"
+        response_fingerprint:
+          $ref: "#/components/schemas/Fingerprint"
+        envelope:
+          $ref: "#/components/schemas/CognosEnvelope"
+
+    Fingerprint:
+      type: object
+      required: [simhash, embedding_hash, length]
+      properties:
+        simhash:
+          type: string
+        embedding_hash:
+          type: string
+        length:
+          type: integer
+        model_id:
+          type: string
+          nullable: true
+        cluster_id:
+          type: string
+          nullable: true
+
+    TrustReportRequest:
+      type: object
+      required: [trace_ids, regime]
+      properties:
+        trace_ids:
+          type: array
+          items:
+            type: string
+        regime:
+          type: string
+          example: EU_AI_ACT
+        format:
+          type: string
+          enum: [json, pdf]
+          default: json
+
+    TrustReportResponse:
+      type: object
+      required: [report_id, created, regime, summary]
+      properties:
+        report_id:
+          type: string
+        created:
+          type: string
+          format: date-time
+        regime:
+          type: string
+        summary:
+          type: object
+          additionalProperties: true

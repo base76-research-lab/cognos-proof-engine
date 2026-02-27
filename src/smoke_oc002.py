@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 from fastapi.testclient import TestClient
+from models import TraceRecord, TrustReportResponse
 
 TEST_DB = Path("/tmp/operational-cognos-oc002.sqlite3")
 if TEST_DB.exists():
@@ -37,13 +38,35 @@ def run_smoke() -> None:
             raise SystemExit(f"Trace endpoint failed: {trace_response.status_code}")
 
         trace_payload = trace_response.json()
-        if trace_payload.get("trace_id") != trace_id:
+        try:
+            parsed_trace = TraceRecord.model_validate(trace_payload)
+        except Exception as error:
+            raise SystemExit(f"Trace schema validation failed: {error}")
+
+        if parsed_trace.trace_id != trace_id:
             raise SystemExit("Trace payload mismatch")
 
-        if not trace_payload.get("request_fingerprint", "").startswith("sha256:"):
-            raise SystemExit("Missing or invalid request fingerprint")
+        report_response = client.post(
+            "/v1/reports/trust",
+            json={
+                "trace_ids": [trace_id, "missing-trace"],
+                "regime": "EU_AI_ACT",
+                "format": "json",
+            },
+        )
+        if report_response.status_code != 200:
+            raise SystemExit(f"Trust report endpoint failed: {report_response.status_code}")
 
-        print("Smoke OK: trace persistence and GET /v1/traces/{trace_id} working")
+        try:
+            report = TrustReportResponse.model_validate(report_response.json())
+        except Exception as error:
+            raise SystemExit(f"Trust report schema validation failed: {error}")
+
+        missing_ids = report.summary.get("missing_ids", [])
+        if "missing-trace" not in missing_ids:
+            raise SystemExit("Trust report missing_ids policy not respected")
+
+        print("Smoke OK: TraceRecord and trust report contract validated")
 
 
 if __name__ == "__main__":

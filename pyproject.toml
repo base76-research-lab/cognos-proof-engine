@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cognos"
+version = "0.1.0"
+description = "CognOS Trust Gateway CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "httpx>=0.27.0"
+]
+
+[project.scripts]
+cognos = "cognos_cli.main:main"
+
+[tool.setuptools]
+packages = ["cognos_cli"]

@@ -132,3 +132,40 @@ Current bottleneck is external traffic, not internal capability.
 
 - Anthropic tool schema/wrapper, MCP-compatible bridge, LangChain, AutoGen, and CrewAI wrappers:
    - `ops/integrations/README.md`
+
+## CognOS CLI (pip install)
+
+Install locally:
+
+- `pip install -e .`
+
+Set runtime environment:
+
+- `export COGNOS_BASE_URL="http://127.0.0.1:8788"`
+- `export COGNOS_API_KEY=""`
+- `export COGNOS_UPSTREAM_AUTH="Bearer YOUR_UPSTREAM_KEY"`
+
+Run:
+
+- `cognos chat "Explain GDPR lawful basis in 3 bullets" --mode monitor`
+- `cognos trace tr_xxxxxxxxxxxx`
+- `cognos report --trace-ids tr_xxx tr_yyy --regime EU_AI_ACT`
+
+## Example Projects
+
+- Python OpenAI-compatible example:
+   - `examples/python_openai_compatible.py`
+- CLI quickstart script:
+   - `examples/cli_quickstart.sh`
+- HTTP/curl examples:
+   - `examples/http_curl_examples.md`
+
+## Developer Onboarding
+
+- External onboarding guide:
+   - `docs/DEVELOPER_ONBOARDING.md`
+
+## Agent-Builder Outreach
+
+- Ready-to-use outreach copy:
+   - `docs/OUTREACH_AGENT_BUILDERS.md`

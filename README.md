@@ -169,6 +169,9 @@ Run:
 
 - Minimal deploy + security runbook (Fly.io / Railway):
    - `docs/PUBLIC_DEPLOY_RUNBOOK.md`
+- Included deploy files:
+   - `fly.toml` (Fly.io)
+   - `Procfile` (Railway/Procfile platforms)
 
 ## Agent-Builder Outreach
 

@@ -18,8 +18,8 @@ This runbook publishes a web-reachable CognOS endpoint for external developers.
 
 ## Option A — Railway (fastest)
 1. Create new Railway project from this repository.
-2. Set start command:
-   - `uvicorn src.main:app --host 0.0.0.0 --port $PORT`
+2. Use included `Procfile` start command:
+   - `web: uvicorn src.main:app --host 0.0.0.0 --port ${PORT:-8080}`
 3. Set required environment variables.
 4. Deploy and copy public URL.
 5. Validate:
@@ -28,15 +28,12 @@ This runbook publishes a web-reachable CognOS endpoint for external developers.
 
 ## Option B — Fly.io
 1. Install Fly CLI and authenticate.
-2. In repo root, run:
-   - `fly launch --no-deploy`
-3. Set app command in `fly.toml` process section:
-   - `uvicorn src.main:app --host 0.0.0.0 --port 8080`
-4. Set secrets:
+2. Use included `fly.toml` in repo root.
+3. Set secrets:
    - `fly secrets set COGNOS_GATEWAY_API_KEY=...`
    - `fly secrets set COGNOS_UPSTREAM_API_KEY=...`
    - `fly secrets set COGNOS_MOCK_UPSTREAM=false`
-5. Deploy:
+4. Deploy:
    - `fly deploy`
 
 ## Production Validation

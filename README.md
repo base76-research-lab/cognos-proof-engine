@@ -27,7 +27,7 @@ Only the operational engine components built and run by agents:
 
 1. Install dependencies: `pip install -r requirements.txt`
 2. Set environment variables (copy `.env.example`)
-3. Start server: `uvicorn src.main:app --reload --port 8788`
+3. Start server: `python3 -m uvicorn --app-dir src main:app --reload --port 8788`
 4. Health check: `GET http://127.0.0.1:8788/healthz`
 
 Ubuntu/PEP668 note:

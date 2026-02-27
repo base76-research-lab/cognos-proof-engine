@@ -165,6 +165,11 @@ Run:
 - External onboarding guide:
    - `docs/DEVELOPER_ONBOARDING.md`
 
+## Public Endpoint Deployment
+
+- Minimal deploy + security runbook (Fly.io / Railway):
+   - `docs/PUBLIC_DEPLOY_RUNBOOK.md`
+
 ## Agent-Builder Outreach
 
 - Ready-to-use outreach copy:

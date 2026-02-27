@@ -1,4 +1,4 @@
-# Operational Cognos
+# CognOS Proof Engine
 
 > **CognOS Proof Engine** — From verified progress to public trust.
 

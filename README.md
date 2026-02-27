@@ -13,8 +13,8 @@
 
 Supports providers:
 
-[![OpenAI](https://img.shields.io/badge/OpenAI-Supported-412991?logo=openai&logoColor=white)](https://openai.com/)
 [![Google](https://img.shields.io/badge/Google-Supported-4285F4?logo=google&logoColor=white)](https://ai.google/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-Supported-412991?logo=openai&logoColor=white)](https://openai.com/)
 [![Claude](https://img.shields.io/badge/Claude-Supported-D97706?logo=anthropic&logoColor=white)](https://www.anthropic.com/claude)
 [![Mistral](https://img.shields.io/badge/Mistral-Supported-111827)](https://mistral.ai/)
 

@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual envs
+.venv/
+venv/
+
+# Local runtime data
+/data/
+*.sqlite3
+
+# OS/editor
+.DS_Store
+.vscode/

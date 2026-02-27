@@ -1,5 +1,7 @@
 # Live Launch Checklist (Copy/Paste)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 Goal: get one real external developer request with a valid `trace_id`.
 
 ## 0) Prerequisites

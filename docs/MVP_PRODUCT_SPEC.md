@@ -1,5 +1,7 @@
 # Operational Cognos — MVP Product Spec
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Produktdefinition
 CognOS MVP är en OpenAI-kompatibel Trust Gateway som lägger ett verifieringslager ovanpå existerande LLM-anrop.
 

@@ -1,5 +1,7 @@
 # CognOS Integration Pack (Ops Zone)
 
+![CognOS Brand](../../docs/assets/logo/cognos-logo-horizontal.svg)
+
 This package exposes CognOS verification across multiple agent/tool ecosystems while keeping the engine logic in `src/`.
 
 ## Included

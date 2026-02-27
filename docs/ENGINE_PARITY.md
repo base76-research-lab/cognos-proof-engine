@@ -1,5 +1,7 @@
 # CognOS Engine Parity Checklist (OpenAPI MVP)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 This checklist is the execution contract for API parity.
 
 Source of truth:

@@ -1,5 +1,7 @@
 # CognOS Proof Engine — Externalization Sprint (14 Days)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 Goal: move from internal proof engine to first external usage.
 
 ## Success Criteria

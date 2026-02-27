@@ -1,5 +1,7 @@
 # Operational Cognos — Unicorn Blueprint
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Mission
 Bygg CognOS som ett infrastrukturellt trust-lager för AI, inte som konsulttjänst eller feature.
 

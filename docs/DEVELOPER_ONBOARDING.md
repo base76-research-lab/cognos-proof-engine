@@ -1,5 +1,7 @@
 # Developer Onboarding (External)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 This guide is optimized for fast first success with CognOS.
 
 ## Target Outcome (15 minutes)
@@ -19,8 +21,26 @@ This guide is optimized for fast first success with CognOS.
 pip install -e .
 export COGNOS_BASE_URL="http://127.0.0.1:8788"
 export COGNOS_API_KEY=""
-export COGNOS_UPSTREAM_AUTH="Bearer YOUR_UPSTREAM_KEY"
+
+# Choose one upstream mode:
+
+# A) OpenAI/API-provider key
+export COGNOS_UPSTREAM_AUTH="Bearer sk-..."
+
+# Optional instance keys for prefix routing (set later if needed)
+# export COGNOS_INSTANCE_OPENAI_API_KEY="sk-..."
+# export COGNOS_INSTANCE_GOOGLE_API_KEY="..."
+# export COGNOS_INSTANCE_CLAUDE_API_KEY="..."
+
+# B) Local Ollama (no upstream key)
+# unset COGNOS_UPSTREAM_AUTH
+
 cognos chat "What are the key GDPR principles?" --mode monitor
+
+# Prefix examples (same endpoint, routed by model prefix):
+# cognos chat "Summarize EU AI Act" --mode monitor --model openai:gpt-4o-mini
+# cognos chat "Summarize EU AI Act" --mode monitor --model google:gemini-2.0-flash-001
+# cognos chat "Summarize EU AI Act" --mode monitor --model claude:claude-sonnet-4
 ```
 
 If `pip install -e .` fails with `externally-managed-environment` (PEP 668), use one of:

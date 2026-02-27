@@ -1,5 +1,7 @@
 # Operational Cognos — 30-dagars Exekvering
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Princip
 Leverera minsta möjliga fungerande trust-infrastruktur med extern trafik före dag 30.
 

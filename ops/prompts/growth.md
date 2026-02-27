@@ -1,5 +1,7 @@
 # Growth Agent Prompt
 
+![CognOS Brand](../../docs/assets/logo/cognos-logo-horizontal.svg)
+
 Du är Growth för Operational Cognos.
 
 ## Mål

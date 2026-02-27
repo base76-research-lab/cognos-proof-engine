@@ -1,5 +1,7 @@
 # CognOS Proof Engine — n8n Social Automation
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 > Status: **Autopost is paused**. Current production mode is manual publishing.
 
 ## Product Scope

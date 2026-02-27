@@ -1,5 +1,7 @@
 # Landing Page Build Instruction (for External AI Model)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 Purpose: this is the exact instruction package to give an AI coding model.
 
 ---

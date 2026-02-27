@@ -1,5 +1,7 @@
 # Outreach Pack — Agent Builders
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 ## Positioning
 CognOS is a trust verification layer for AI API traffic.
 

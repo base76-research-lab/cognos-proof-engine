@@ -1,5 +1,7 @@
 # CognOS Logo Assets
 
+![CognOS Brand](cognos-logo-horizontal.svg)
+
 ## Files
 
 - `cognos-logo-horizontal.svg` — primary logo for hero/header sections.

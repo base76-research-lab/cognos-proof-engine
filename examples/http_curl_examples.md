@@ -1,5 +1,7 @@
 # HTTP/Curl Examples
 
+![CognOS Brand](../docs/assets/logo/cognos-logo-horizontal.svg)
+
 ## 1) Chat completion via CognOS
 
 ```bash

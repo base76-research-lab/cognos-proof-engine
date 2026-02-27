@@ -1,5 +1,7 @@
 # Public Deploy Runbook (Fly.io / Railway)
 
+![CognOS Brand](assets/logo/cognos-logo-horizontal.svg)
+
 This runbook publishes a web-reachable CognOS endpoint for external developers.
 
 ## Target

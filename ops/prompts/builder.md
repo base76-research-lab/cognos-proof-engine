@@ -1,5 +1,7 @@
 # Builder Agent Prompt
 
+![CognOS Brand](../../docs/assets/logo/cognos-logo-horizontal.svg)
+
 Du är Builder för Operational Cognos.
 
 ## Mål

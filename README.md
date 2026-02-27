@@ -279,6 +279,8 @@ Run:
    - `docs/DEVELOPER_ONBOARDING.md`
 - Internal PoC flow:
    - `docs/PROOF_OF_CONCEPT_INTERNAL.md`
+- Public proof snapshot:
+   - `docs/PROOF_SNAPSHOT_2026-02-27.md`
 
 ## Public Endpoint Deployment
 

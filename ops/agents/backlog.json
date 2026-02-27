@@ -1,0 +1,101 @@
+{
+  "version": "1.0",
+  "tasks": [
+    {
+      "id": "OC-001",
+      "title": "Stabilisera chat passthrough endpoint",
+      "owner": "builder",
+      "priority": "P0",
+      "status": "done",
+      "tags": [
+        "gateway",
+        "week1"
+      ],
+      "definition_of_done": [
+        "POST /v1/chat/completions fungerar med upstream",
+        "Fel returneras med trace_id",
+        "Minst 100 interna requests utan kritiskt fel"
+      ],
+      "completion_notes": "Smoke OK 100/100 i mock-läge med trace-id header"
+    },
+    {
+      "id": "OC-002",
+      "title": "Lägg in trace endpoint och persistens",
+      "owner": "builder",
+      "priority": "P0",
+      "status": "done",
+      "tags": [
+        "trace",
+        "week1"
+      ],
+      "definition_of_done": [
+        "GET /v1/traces/{trace_id} returnerar sparad metadata",
+        "trace_id täckning 100% för completion responses",
+        "Smoke-test passerar: python3 src/smoke_oc002.py"
+      ],
+      "completion_notes": "Trace endpoint + SQLite persistens klar, smoke_oc002 passerar"
+    },
+    {
+      "id": "OC-003",
+      "title": "Skapa alpha onboarding guide",
+      "owner": "growth",
+      "priority": "P1",
+      "status": "todo",
+      "tags": [
+        "docs",
+        "distribution"
+      ],
+      "definition_of_done": [
+        "Snabbstart för extern dev <= 30 min",
+        "cURL + Python-exempel verifierade"
+      ]
+    },
+    {
+      "id": "OC-004",
+      "title": "Sätt upp weekly operating review",
+      "owner": "conductor",
+      "priority": "P1",
+      "status": "todo",
+      "tags": [
+        "ops",
+        "cadence"
+      ],
+      "definition_of_done": [
+        "Weekly checklista definierad",
+        "Kill-switch signaler synliga"
+      ]
+    },
+    {
+      "id": "OC-005",
+      "title": "Första externa integrationsmålet",
+      "owner": "growth",
+      "priority": "P0",
+      "status": "in_progress",
+      "tags": [
+        "traction",
+        "week2"
+      ],
+      "definition_of_done": [
+        "Minst 1 extern dev onboardad",
+        "Minst 100 riktiga requests genom gateway"
+      ]
+    },
+    {
+      "id": "OC-006",
+      "title": "Auto-uppdatera TVV från trace-db",
+      "owner": "builder",
+      "priority": "P0",
+      "status": "done",
+      "tags": [
+        "metrics",
+        "automation"
+      ],
+      "definition_of_done": [
+        "CLI-kommando uppdaterar state.json från lagrade traces",
+        "TVV requests och tokens speglar faktisk trace-data",
+        "Körbar utan manuella JSON-edits"
+      ],
+      "completion_notes": "sync-tvv från trace-db fungerar, smoke_oc006 passerar"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "north_star": "TVV (Total Verified Volume)",
+  "objective": "Externa återkommande integrationer inom 30 dagar",
+  "agents": [
+    {
+      "id": "conductor",
+      "name": "Conductor",
+      "purpose": "Prioritera, tilldela och hålla tempo mot extern trafik",
+      "success_metrics": ["weekly_shipped_tasks", "blocked_tasks_resolved", "external_integrations_active"],
+      "constraints": [
+        "No scope creep before external traffic",
+        "One daily priority",
+        "Kill blockers fast"
+      ]
+    },
+    {
+      "id": "builder",
+      "name": "Builder",
+      "purpose": "Bygg gateway, traceability och policy-kärna",
+      "success_metrics": ["endpoint_stability", "p95_overhead_ms", "trace_coverage"],
+      "constraints": [
+        "Streaming must not break",
+        "p95 overhead target < 100ms (excl inference)",
+        "No manual workarounds as permanent solution"
+      ]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "purpose": "Onboarda externa utvecklare och driva adoption",
+      "success_metrics": ["external_devs_onboarded", "weekly_retention", "enforce_usage_share"],
+      "constraints": [
+        "Integration must be <= 30 min",
+        "Docs before outreach",
+        "Track every outreach outcome"
+      ]
+    }
+  ]
+}

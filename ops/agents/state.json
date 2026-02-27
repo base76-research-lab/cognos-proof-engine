@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "cycle": {
+    "current_day": 1,
+    "phase": "week1",
+    "mode": "execution"
+  },
+  "north_star_snapshot": {
+    "tvv_requests": 3,
+    "tvv_tokens": 42,
+    "external_active_integrations": 0,
+    "enforce_share": 0.0
+  },
+  "last_update": "2026-02-27T10:07:08.563304+00:00"
+}

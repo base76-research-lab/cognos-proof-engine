@@ -17,9 +17,15 @@
 
 Supported providers:
 
-[![OpenAI](https://img.shields.io/badge/OpenAI-Enabled-412991)](https://openai.com/)
-[![Google](https://img.shields.io/badge/Google-Enabled-4285F4)](https://ai.google/)
-[![Claude](https://img.shields.io/badge/Claude-Enabled-D97706)](https://www.anthropic.com/claude)
+<a href="https://openai.com/" target="_blank" rel="noopener noreferrer">
+   <img src="https://cdn.simpleicons.org/openai/FFFFFF" alt="OpenAI" width="28" />
+</a>
+<a href="https://ai.google/" target="_blank" rel="noopener noreferrer">
+   <img src="https://cdn.simpleicons.org/google/FFFFFF" alt="Google" width="28" />
+</a>
+<a href="https://www.anthropic.com/claude" target="_blank" rel="noopener noreferrer">
+   <img src="https://cdn.simpleicons.org/anthropic/FFFFFF" alt="Claude (Anthropic)" width="28" />
+</a>
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 

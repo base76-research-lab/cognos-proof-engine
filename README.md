@@ -26,6 +26,13 @@ Verify LLM outputs. Prove correctness. Pass compliance.
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 
+---
+
+> If CognOS is useful to you — **[⭐ star the repo](https://github.com/base76-research-lab/cognos-proof-engine)**.
+> It helps independent research stay visible.
+
+---
+
 ## Why this exists
 
 Large language models are optimized to appear confident. RLHF — the alignment

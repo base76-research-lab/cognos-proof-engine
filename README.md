@@ -26,6 +26,29 @@ Verify LLM outputs. Prove correctness. Pass compliance.
 
 ![CognOS Flow](docs/assets/cognos-proof-flow.svg)
 
+## Why this exists
+
+Large language models are optimized to appear confident. RLHF — the alignment
+technique behind every major frontier model — systematically penalizes expressed
+uncertainty. The result: systems that *perform* certainty rather than represent it.
+
+This is not a UX problem. It is an architectural problem with measurable
+consequences for any system that relies on AI to make decisions in regulated,
+high-stakes, or safety-critical contexts.
+
+CognOS sits between your application and any LLM provider and does one thing:
+**it makes the epistemic state of every AI decision legible, auditable, and
+provable** — without requiring you to modify the underlying model.
+
+Built on research from [Base76 Research Lab](https://base76.se) — the only
+independent AI research lab in the Nordics focused on epistemic AI architecture.
+
+> Wikström, B. (2026). *When Alignment Reduces Uncertainty: Epistemic Variance
+> Collapse and Its Implications for Metacognitive AI.*
+> DOI: [10.5281/zenodo.18731535](https://doi.org/10.5281/zenodo.18731535)
+
+---
+
 ## Start Here
 
 - **Quickstart (5 min):** `docs/DEVELOPER_ONBOARDING.md`

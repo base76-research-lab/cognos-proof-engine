@@ -6,6 +6,9 @@ Verify LLM outputs. Prove correctness. Pass compliance.
 
 **The missing trust layer for the AI economy.**
 
+> **Want multi-tenancy, webhooks, EU AI Act audit reports, and commercial support?**
+> → [TrustPlane](https://github.com/base76-research-lab/TrustPlane) — the enterprise layer built on this engine.
+
 [![GitHub Stars](https://img.shields.io/github/stars/base76-research-lab/operational-cognos?style=social)](https://github.com/base76-research-lab/operational-cognos)
 [![CI Tests](https://github.com/base76-research-lab/operational-cognos/actions/workflows/tests.yml/badge.svg)](https://github.com/base76-research-lab/operational-cognos/actions)
 [![Tests Passing](https://img.shields.io/badge/Tests-68%20passing-16a34a)](tests/)
